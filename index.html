@@ -10,8 +10,11 @@
 <body>
 	<div id="app">
 		<input type="text" v-on:input="changeGreeting"></input>
-        <p>{{ title }} - <a v-bind:href="link">Google</a></p>
-        <h3>{{sayHello()}}</h3>
+		<p>{{ title }} - <a v-bind:href="link">Google</a></p>
+		<h3 v-once>{{ title }}</h3>
+		<h3>{{sayHello()}}</h3>
+		
+	
 	</div>
 	<script>
 	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
@@ -26,6 +29,7 @@
 					this.title = event.target.value;
                 },
                 sayHello: function(){
+					this.title= "mouf";
                     return "Bonjour monsieur Ndeme , j'adore , le code et j'adore Vuejs"
                 }
 			}
