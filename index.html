@@ -18,6 +18,7 @@
 		<!-- button -->
 		<button v-on:click="incrise">Click me</button>
 		<p>{{counter}}</p>
+		<p v-on:mousemove="mouseMouve"> Coordonnate:  X: {{x}} Y: {{y}}</p>
 	
 	</div>
 	<script>
@@ -29,6 +30,8 @@
 				link: 'www.google.com',
 				finishedLink:"<a href='www.google.com'>Google</a>",
 				counter:0,
+				x:0,
+				y:0,
 			},
 			methods: {
 				changeGreeting: function(event) {
@@ -40,7 +43,12 @@
 				},
 				incrise: function(){
 					this.counter++;
+				},
+				mouseMouve:function(event){
+					this.x=event.clientX;
+					this.y=event.clientY;
 				}
+
 			}
 		})
 	</script>
