@@ -9,11 +9,15 @@
 </head>
 <body>
 	<div id="app">
+		<!-- initiation -->
 		<input type="text" v-on:input="changeGreeting"></input>
 		<p>{{ title }} - <a v-bind:href="link">Google</a></p>
 		<h3 v-once>{{ title }}</h3>
 		<h3>{{sayHello()}}</h3>
-		
+		<p v-html="finishedLink"></p>
+		<!-- button -->
+		<button v-on:click="incrise">Click me</button>
+		<p>{{counter}}</p>
 	
 	</div>
 	<script>
@@ -22,7 +26,9 @@
 			el: '#app',
 			data: {
 				title: 'Hello World!',
-				link: 'www.google.com'
+				link: 'www.google.com',
+				finishedLink:"<a href='www.google.com'>Google</a>",
+				counter:0,
 			},
 			methods: {
 				changeGreeting: function(event) {
@@ -31,7 +37,10 @@
                 sayHello: function(){
 					this.title= "mouf";
                     return "Bonjour monsieur Ndeme , j'adore , le code et j'adore Vuejs"
-                }
+				},
+				incrise: function(){
+					this.counter++;
+				}
 			}
 		})
 	</script>
