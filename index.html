@@ -16,10 +16,15 @@
 		<h3>{{sayHello()}}</h3>
 		<p v-html="finishedLink"></p>
 		<!-- button -->
-		<button v-on:click="incrise(2,$event)">Click me</button>
+		<!-- <button v-on:click="incrise(2,$event)">Click me</button> -->
+		<button v-on:click="counter++">counter ++</button>
+		<button v-on:click="counter--"> counter -- </button>
+		<button v-on:click="secondCompteur++">Click me</button>
 				 <!-- augmente le nombre de 2 dans ce boutton est appuyer avec l'attribut click -->
-		<p>{{counter}}</p>
-		<p>{{counter >10 ? 'grather than 10' : 'small than 10'}}</p>
+		<p>{{counter}} | {{secondCompteur}}</p>
+		<p>{{result}}</p>
+		<p>{{result()}} | {{ output }}</p>
+		<!-- <p>{{counter >10 ? 'grather than 10' : 'small than 10'}}</p> -->
 		<p v-on:mousemove="mouseMove"> Coordonnate:  X: {{x}} Y: {{y}} 
 			<span v-on:mousemove.stop=""> Dead Spot </span>
 			<!-- ceci sert a arreter la propagation -->
@@ -35,31 +40,49 @@
 		new Vue({
 			el: '#app',
 			data: {
+				secondCompteur:0,
 				title: 'Hello World!',
 				link: 'www.google.com',
 				finishedLink:"<a href='www.google.com'>Google</a>",
 				counter:0,
 				x:0,
 				y:0,
-				name:'ndeme yvan'
+				name:'ndeme yvan',
+				result:'',
+			},
+			computed: {
+				output: function(){
+					console.log('ouput');
+					return this.counter >5 ? 'grather than 5' : 'small than 5'
+				}
 			},
 			methods: {
 				changeGreeting: function(event) {
 					this.title = event.target.value;
+				
                 },
                 sayHello: function(){
 					this.title= "mouf";
                     return "Bonjour monsieur Ndeme , j'adore , le code et j'adore Vuejs"
 				},
-				incrise: function(step){
-					this.counter+=step;
-				},
+				// incrise: function(){
+				// 	this.counter++;
+				// 	this.result = this.counter >10 ? 'grather than 10' : 'small than 10';
+				// },
+				// dicrise: function(){
+				// 	this.counter--;
+				// 	this.result = this.counter >10 ? 'grather than 10' : 'small than 10';
+				// },
 				mouseMove:function(event){
 					this.x=event.clientX;
 					this.y=event.clientY;
 				},
 				alertMe:function(event){
 					alert("key up");
+				},
+				result:function(){
+					console.log('method');
+					return  this.counter >5 ? 'grather than 5' : 'small than 5'
 				}
 
 			}
