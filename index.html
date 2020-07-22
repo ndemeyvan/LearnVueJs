@@ -24,8 +24,11 @@
 			<span v-on:mousemove.stop=""> Dead Spot </span>
 			<!-- ceci sert a arreter la propagation -->
 		 </p>
-		 <input type="text" v-on:keyUp.enter="alertMe"></input>
+		 <!-- <input type="text" v-on:keyUp.enter="alertMe"></input> -->
 		 <!-- si le bouton entrer de la souri est appuyer , fait ceci -->
+		 <input type="text" v-model="name"></input>
+		 <p>{{name}}</p>
+		 <!-- two way data binding -->
 	</div>
 	<script>
 	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
@@ -38,6 +41,7 @@
 				counter:0,
 				x:0,
 				y:0,
+				name:'ndeme yvan'
 			},
 			methods: {
 				changeGreeting: function(event) {
