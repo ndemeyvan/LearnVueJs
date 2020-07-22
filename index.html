@@ -38,7 +38,9 @@
 	<script>
 	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
 		new Vue({
+				//element section
 			el: '#app',
+				//data section
 			data: {
 				secondCompteur:0,
 				title: 'Hello World!',
@@ -50,12 +52,14 @@
 				name:'ndeme yvan',
 				result:'',
 			},
+				//computed section
 			computed: {
 				output: function(){
 					console.log('ouput');
 					return this.counter >5 ? 'grather than 5' : 'small than 5'
 				}
 			},
+			//method section
 			methods: {
 				changeGreeting: function(event) {
 					this.title = event.target.value;
@@ -85,7 +89,16 @@
 					return  this.counter >5 ? 'grather than 5' : 'small than 5'
 				}
 
-			}
+			},
+				//watch section pour les operations asynchrone
+			watch: {
+				counter: function(value){
+					var vn = this;
+					setTimeout(() => {
+						this.counter=0;
+					}, 2000);
+				}
+			},
 		})
 	</script>
 </body>
