@@ -54,18 +54,43 @@
 	  
 	  <input type="text" v-model="color"></input> -->
 
-	  <!-- ETAPE 3 Condition et listes ... -->
-	  <p v-if="show">You can see me!</p>
-	  <p v-else>Now You can't see me!</p>
-	  <p v-show="show">Do you also see me?</p>
-	  <button @click="show = !show">Switch visibilities</button>
+      <!-- ETAPE 3 Condition et listes ... -->
+      <p v-if="show">You can see me!</p>
+      <p v-else>Now You can't see me!</p>
+      <p v-show="show">Do you also see me?</p>
+      <button @click="show = !show">Switch visibilities</button>
+      <!-- les lites -->
+      <ul>
+        <li v-for="(ingredient,index) in ingredients" :key="ingredient">
+          {{ingredient}} index: {{index}}
+        </li>
+      </ul>
 
+      <button @click="addIngredient()">Add ingredient</button>
+      <hr />
 
+      <ul>
+        <li v-for="(person,index) in persons" :key="index">
+          <!-- {{person.name}}} | index: {{index}} -->
+          <div v-for="(value,key) in person" :key="index">
+            <!-- ceci sert a afficher les element sous forme de cle valeur -->
+            {{ key }} : {{ value }}
+          </div>
+        </li>
+      </ul>
+
+      <!-- <span v-for="n in 10">{{n}}</span> -->
+      <!-- ceci en haut sert a aire une boucle de 1 a 10 -->
+      <hr />
+      <!-- avec le template -->
+      <!-- <template v-for="(ingredient,index) in ingredients">
+			<h1>{{ingredient}}</h1>
+			<p>index: {{index}}</p>
+		</template> -->
     </div>
     <script>
       // You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
-      new Vue(
-		  {
+      new Vue({
         //element section
         el: "#app",
         //data section
@@ -83,9 +108,13 @@
           // etape2 dinamic style
           attachRed: true,
           color: "green",
-		  //etape 3 conditions et listes
-		  show:true,
-
+          //etape 3 conditions et listes
+          show: true,
+          ingredients: ["oil", "fruits", "cookies"],
+          persons: [
+            { name: "Ndeme yvan", age: 27, color: "red" },
+            { name: "Micheal Nde", age: 60, color: "green" },
+          ],
         },
         // etape 3 computed section
         computed: {
@@ -102,10 +131,12 @@
         },
         //method section
         methods: {
-
-			swith:function(){
-				this.show = !show;
-			},
+          addIngredient: function () {
+			  this.ingredients.push('lol');
+		  },
+          swith: function () {
+            this.show = !show;
+          },
           changeLink: function () {
             this.link = "apple.com";
           },
