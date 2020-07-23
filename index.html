@@ -11,6 +11,7 @@
   <body>
     <div id="app">
       <!-- ETAPE 1 BASIC initiation EVENT ect ... -->
+
       <!-- <input type="text" v-on:input="changeGreeting"></input>
 		<p>{{ title }} - <a v-bind:href="link">Google</a></p>
 		<h3 v-once>{{ title }}</h3>
@@ -37,82 +38,114 @@
       <!-- two way data binding -->
       <!-- <button @click='changeLink'>Change the link</button>
 		 <a :href="link">google</a> -->
+
       <!-- ETAPE 2 Dinamyc style ... -->
-	  <div class="demo" @click=" attachRed = !attachRed" :class='{ red : attachRed }'></div>
-	  <!-- si je clique su lui et que attachRed est a vrai , grace a :class change la couleur de ma div -->
-      <div class="demo" @click=" attachRed = !attachRed" :class='{ red : attachRed }'></div>
-      <div class="demo" @click=" attachRed = !attachRed" :class='{ red : attachRed }'></div>
+
+      <!-- <div
+        class="demo"
+        @click="attachRed = !attachRed"
+        :class="divClasses"
+      ></div> -->
+      <!-- si je clique su lui et que attachRed est a vrai , grace a :class change la couleur de ma div -->
+
+      <!-- <div class="demo" :class="[color,{red:attachRed}]"></div>
+
+	  <div class="demo" :style='{backgroundColor:color}'></div>
+	  
+	  <input type="text" v-model="color"></input> -->
+
+	  <!-- ETAPE 3 Condition et listes ... -->
+	  <p v-if="show">You can see me!</p>
+	  <p v-else>Now You can't see me!</p>
+	  <p v-show="show">Do you also see me?</p>
+	  <button @click="show = !show">Switch visibilities</button>
+
+
     </div>
     <script>
       // You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
-      	new Vue({
-      			//element section
-      		el: '#app',
-      			//data section
-      		data: {
-      			secondCompteur:0,
-      			title: 'Hello World!',
-      			link: 'www.google.com',
-      			finishedLink:"<a href='www.google.com'>Google</a>",
-      			counter:0,
-      			x:0,
-      			y:0,
-      			name:'ndeme yvan',
-      			result:'',
-      			// dinamic style
-      			attachRed:false,
-      		},
-      			//computed section
-      		computed: {
-      			output: function(){
-      				console.log('ouput');
-      				return this.counter >5 ? 'grather than 5' : 'small than 5'
-      			}
-      		},
-      		//method section
-      		methods: {
-      			changeLink:function(){
-      				this.link='apple.com';
-      			},
-      			changeGreeting: function(event) {
-      				this.title = event.target.value;
+      new Vue(
+		  {
+        //element section
+        el: "#app",
+        //data section
+        data: {
+          // etape 1
+          secondCompteur: 0,
+          title: "Hello World!",
+          link: "www.google.com",
+          finishedLink: "<a href='www.google.com'>Google</a>",
+          counter: 0,
+          x: 0,
+          y: 0,
+          name: "ndeme yvan",
+          result: "",
+          // etape2 dinamic style
+          attachRed: true,
+          color: "green",
+		  //etape 3 conditions et listes
+		  show:true,
 
-                     },
-                     sayHello: function(){
-      				this.title= "mouf";
-                         return "Bonjour monsieur Ndeme , j'adore , le code et j'adore Vuejs"
-      			},
-      			// incrise: function(){
-      			// 	this.counter++;
-      			// 	this.result = this.counter >10 ? 'grather than 10' : 'small than 10';
-      			// },
-      			// dicrise: function(){
-      			// 	this.counter--;
-      			// 	this.result = this.counter >10 ? 'grather than 10' : 'small than 10';
-      			// },
-      			mouseMove:function(event){
-      				this.x=event.clientX;
-      				this.y=event.clientY;
-      			},
-      			alertMe:function(event){
-      				alert("key up");
-      			},
-      			result:function(){
-      				console.log('method');
-      				return  this.counter >5 ? 'grather than 5' : 'small than 5'
-      			}
+        },
+        // etape 3 computed section
+        computed: {
+          output: function () {
+            console.log("ouput");
+            return this.counter > 5 ? "grather than 5" : "small than 5";
+          },
+          divClasses: function () {
+            return {
+              red: this.attachRed == true,
+              blue: !this.attachRed,
+            };
+          },
+        },
+        //method section
+        methods: {
 
-      		},
-      			//watch section pour les operations asynchrone
-      		watch: {
-      			counter: function(value){
-      				var vn = this;
-      				setTimeout(() => {
-      					this.counter=0;
-      				}, 2000);
-      			}
-      		},
-      	})
+			swith:function(){
+				this.show = !show;
+			},
+          changeLink: function () {
+            this.link = "apple.com";
+          },
+          changeGreeting: function (event) {
+            this.title = event.target.value;
+          },
+          sayHello: function () {
+            this.title = "mouf";
+            return "Bonjour monsieur Ndeme , j'adore , le code et j'adore Vuejs";
+          },
+          // incrise: function(){
+          // 	this.counter++;
+          // 	this.result = this.counter >10 ? 'grather than 10' : 'small than 10';
+          // },
+          // dicrise: function(){
+          // 	this.counter--;
+          // 	this.result = this.counter >10 ? 'grather than 10' : 'small than 10';
+          // },
+          mouseMove: function (event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+          },
+          alertMe: function (event) {
+            alert("key up");
+          },
+          result: function () {
+            console.log("method");
+            return this.counter > 5 ? "grather than 5" : "small than 5";
+          },
+        },
+        //watch section pour les operations asynchrone
+        watch: {
+          counter: function (value) {
+            var vn = this;
+            setTimeout(() => {
+              this.counter = 0;
+            }, 2000);
+          },
+        },
+      });
     </script>
   </body>
 </html>
