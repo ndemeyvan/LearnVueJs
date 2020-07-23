@@ -1,5 +1,5 @@
 // You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
-var  vm1 = new Vue({
+var vm1 = new Vue({
   //element section
   el: "#app1",
   //data section
@@ -45,21 +45,20 @@ var  vm1 = new Vue({
         blue: !this.attachRed,
       };
     },
-    lowercaseTitle: function() {
-        return this.title.toLowerCase();
-      }
-
+    lowercaseTitle: function () {
+      return this.title.toLowerCase();
+    },
   },
   //method section
   methods: {
-    show: function() {
-        console.log("show");
-        this.showParagraph = true;
-        this.updateTitle('The VueJS Instance (Updated)');
-      },
-      updateTitle: function(title) {
-        this.title = title;
-      },
+    show: function () {
+      console.log("show");
+      this.showParagraph = true;
+      this.updateTitle("The VueJS Instance (Updated)");
+    },
+    updateTitle: function (title) {
+      this.title = title;
+    },
     monsterAttack: function () {
       var damage = this.calculateDammage(5, 18);
       this.playerHealth -= damage;
@@ -185,9 +184,9 @@ var  vm1 = new Vue({
         this.counter = 0;
       }, 2000);
     },
-    title: function(value) {
-        alert('Title changed, new value: ' + value);
-      }
+    title: function (value) {
+      alert("Title changed, new value: " + value);
+    },
   },
 });
 
@@ -196,41 +195,72 @@ var  vm1 = new Vue({
      vm1.show();
  }, 3000);*/
 
-var  vm2 =new Vue({
-    // el:'#app2',
-    data:{
-        title:'Hello am app 2 title'
+var vm2 = new Vue({
+  // el:'#app2',
+  data: {
+    title: "Hello am app 2 title",
+  },
+  methods: {
+    changeSomething: function () {
+      // vm1.title="titre de vm1 changer par le click sur vm2"
+      // this.$refs.myButton.innerText="Hello ref button";
+      console.log(this.$refs);
     },
-    methods:{
-        changeSomething:function(){
-            // vm1.title="titre de vm1 changer par le click sur vm2"
-           // this.$refs.myButton.innerText="Hello ref button";
-            console.log(this.$refs);
-        }
-    },
-    computed:{
+  },
+  computed: {},
+  watch: {},
+});
+vm2.$mount("#app2");
 
+var vm3 = new Vue({
+     el:"#app3",
+//   template: "<h1>Hello Bro , i am a template think</h1>",
+  data: {
+    title: "Hello am app 3 title",
+  },
+  methods: {
+    changeTitle: function() {
+        this.title = "mouff";
     },
-    watch: {
-        
-    },
-})
-vm2.$mount('#app2');
+    destroy:function(){
+        this.$destroy();
+    }
+  },
+  computed: {
 
-var  vm3 =new Vue({
-    template:'<h1>Hello Bro , i am a template think</h1>',
-    data:{
-        title:'Hello am app 3 title'
-    },
-    methods:{
-        
-    },
-    computed:{
+  },
 
-    },
-    watch: {
-        
-    },
-})
-vm3.$mount('#app3');
+  watch: {
+
+  },
+  //avant la creation
+  beforeCreate: function () {
+    console.log("beforeCreated");
+  },
+  //created
+  created: function () {
+    console.log("Created");
+  },
+  beforeMount: function () {
+    console.log("beforeMounted");
+  },
+  mounted: function () {
+    console.log("mounted");
+  },
+  beforeUpdate:function() {
+    console.log("beforeUpdate");
+  },
+  updated:function() {
+    console.log("updated");
+
+  },
+  beforeDestroy:function() {
+    console.log("beforeDestroy");
+
+  },
+  destroyed:function() {
+    console.log("destroyed");
+
+  },
+});
 

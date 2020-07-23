@@ -155,15 +155,21 @@
 		<p v-if="showParagraph">This is not always visible</p>
 
 	</div>
+
 	<div id="app2">
 		<h1>  {{ title }}  </h1>
 		<button @click="changeSomething" ref="myButton">Change Something in vuejs</button>
 		
 	</div>
+
 	<div id="app3">
-		
-		
+		<h1>  {{ title }}  </h1>
+		<button @click="changeTitle">Change title</button>
+		<button @click="destroy">Destroy</button>
 	</div>
+
+	
+	
     <script src="vue.js"></script>
     <script src="app.js"></script>
   </body>
